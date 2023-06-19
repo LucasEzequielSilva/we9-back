@@ -1,56 +1,42 @@
-import { Model, DataTypes } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../config/database';
 
-class User extends Model {
+interface DTAttributes {
+  id: number;
+  nombre_dt: string;
+  alias: string;
+}
+
+interface DTCreationAttributes extends Optional<DTAttributes, 'id'> {}
+
+class DT extends Model<DTAttributes, DTCreationAttributes> implements DTAttributes {
   public id!: number;
-  public name!: string;
-  public email!: string;
-  public password!: string;
+  public nombre_dt!: string;
+  public alias!: string;
 
   // Otras propiedades y métodos del modelo
 }
 
-User.init(
+DT.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nombre_dt: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING(100),
+    alias: {
+      type: DataTypes.STRING(50),
       allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
-    },
-    online: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
-    equipo: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'equipos',
-        key: 'id',
-      },
-    },
-    fecha_registro: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
     },
   },
   {
-    tableName: 'usuarios', // Nombre de la tabla en la base de datos
+    tableName: 'DTs', // Nombre de la tabla en la base de datos
     sequelize, // Instancia de Sequelize previamente configurada
   }
 );
 
-export default User;
+export default DT;

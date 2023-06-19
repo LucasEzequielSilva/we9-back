@@ -1,7 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
+import { EquipoAttributes } from '../types/EquipoTypes';
 
-class Equipo extends Model {
+class Equipo extends Model<EquipoAttributes> {
   public id!: number;
   public teamCode!: string;
   public teamName!: string;
