@@ -1,17 +1,13 @@
-import { DataTypes, Model } from 'sequelize';
+import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../config/database';
-import { UserAttributes } from '../types/UserTypes';
-
+import { UserAttributes } from '../types/UserTypes'
 class Usuario extends Model<UserAttributes> {
   public id!: number;
   public name!: string;
   public email!: string;
   public password!: string;
   public online!: boolean;
-  public equipo!: number;
   public fecha_registro!: Date;
-
-  // Otras propiedades y métodos del modelo
 }
 
 Usuario.init(
@@ -21,7 +17,7 @@ Usuario.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    name: {
+    nombre: {
       type: DataTypes.STRING(50),
       allowNull: false,
     },
@@ -30,7 +26,11 @@ Usuario.init(
       allowNull: false,
       unique: true,
     },
-    password: {
+    equipo:{
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    contraseña: {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
@@ -38,13 +38,6 @@ Usuario.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
-    },
-    equipo: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'equipos',
-        key: 'id',
-      },
     },
     fecha_registro: {
       type: DataTypes.DATE,
@@ -56,5 +49,11 @@ Usuario.init(
     sequelize, // Instancia de Sequelize previamente configurada
   }
 );
-
+Usuario.sync()
+  .then(() => {
+    console.log('Modelo Usuario sincronizado con la base de datos');
+  })
+  .catch((error) => {
+    console.error('Error al sincronizar el modelo Usuario:', error);
+  });
 export default Usuario;

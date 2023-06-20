@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import cors from 'cors';
 import logger from 'morgan';
-
+import indexRouter from './routes/index.routes'
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors());
 app.use(logger('dev'));
-
+app.use(indexRouter)
 // Define las rutas y lógica adicional de la aplicación
 
 // Middleware para manejar errores

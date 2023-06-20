@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 // Configuración de la conexión con la base de datos
-const sequelize = new Sequelize('nombre_de_la_base_de_datos', 'nombre_de_usuario', 'contraseña', {
+const sequelize = new Sequelize('we9', 'root', 'Lacaverna1', {
   host: 'localhost',
   dialect: 'mysql',
 });
