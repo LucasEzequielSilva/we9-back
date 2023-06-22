@@ -69,9 +69,7 @@ const logout = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
-
 // Otros controladores y funciones relacionadas con usuarios
-
 export default {
   logout,
   signIn,

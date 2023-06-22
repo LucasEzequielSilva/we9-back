@@ -8,8 +8,6 @@ import logger from 'morgan';
 import indexRouter from './routes/index.routes'
 const app = express();
 const port = process.env.PORT || 8080;
-
-// Llamar a la función de conexión
 conectarBaseDeDatos();
 
 // Resto del código de tu aplicación

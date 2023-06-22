@@ -1,16 +1,14 @@
-import { DataTypes } from 'sequelize';
-
 interface EquipoAttributes {
-    id: number;
-    teamCode: string;
-    teamName: string;
-    league: string;
-    country: string;
-    manager: string;
-    stars: number;
-    category: string;
-    primaryColor: string;
-    formation: string;
+    id?: number;
+    team_code?: string;
+    team_name?: string;
+    league?: string;
+    country?: string;
+    id_tecnico?: number;
+    stars?: number;
+    category?: string;
+    primary_color?: string;
+    formation?: string;
 }
 
 type EquipoCreationAttributes = Partial<EquipoAttributes>;

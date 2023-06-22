@@ -56,11 +56,4 @@ Usuario.init(
     sequelize, // Instancia de Sequelize previamente configurada
   }
 );
-Usuario.sync()
-  .then(() => {
-    console.log('Modelo Usuario sincronizado con la base de datos');
-  })
-  .catch((error) => {
-    console.error('Error al sincronizar el modelo Usuario:', error);
-  });
 export default Usuario;
